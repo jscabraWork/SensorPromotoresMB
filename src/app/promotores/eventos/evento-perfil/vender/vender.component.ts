@@ -4,10 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PromotoresDataService } from '../../../../service/data/promotores-data.service';
+import { AuthService } from '../../../../service/security/auth.service';
 import { Evento } from '../../../../models/evento.model';
 import { Dia } from '../../../../models/dia.model';
 import { BaseComponent } from '../../../../common-ui/base.component';
 import { SeleccionLocalidadComponent } from './seleccion-localidad/seleccion-localidad.component';
+import { ReservaModalComponent } from './reserva-modal/reserva-modal.component';
+import { HardcodedAutheticationService } from '../../../../service/security/hardcoded-authetication.service';
 
 @Component({
   selector: 'app-vender',
@@ -23,6 +26,7 @@ export class VenderComponent extends BaseComponent {
 
   constructor(
     private promotoresService: PromotoresDataService,
+    private authService: HardcodedAutheticationService,
     dialog: MatDialog,
     route: ActivatedRoute
   ) {
@@ -55,7 +59,29 @@ export class VenderComponent extends BaseComponent {
     return imagenPrincipal?.url || null;
   }
 
-  onReservar(event: {localidad: any, cantidad: number}): void {
-    this.mostrarMensaje(`Reservando ${event.cantidad} boleta(s) de ${event.localidad.nombre}. Funcionalidad próximamente.`);
+  onReservar(event: {localidad: any, cantidad: number, total: number}): void {
+    const dialogRef = this.dialog.open(ReservaModalComponent, {
+      width: '500px',
+      disableClose: true,
+      data: {
+        localidad: event.localidad,
+        cantidad: event.cantidad,
+        total: event.total,
+        promotorId: this.authService.getCC()
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.success && result.data) {
+          const reservaId = result.data.id;
+          const linkReserva = `https://ticketsensor.com/reserva/${reservaId}`;
+          const mensajeCompleto = `${result.message}\n\nLink de la reserva:\n${linkReserva}`;
+          this.mostrarMensaje(mensajeCompleto);
+        } else {
+          this.mostrarMensaje(result.message);
+        }
+      }
+    });
   }
 }

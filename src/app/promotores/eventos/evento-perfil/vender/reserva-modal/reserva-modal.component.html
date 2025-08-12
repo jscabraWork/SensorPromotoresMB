@@ -1,0 +1,52 @@
+<div class="modal-overlay" (click)="onCerrar()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3 class="modal-title">Confirmar Reserva</h3>
+      <button class="btn-cerrar" (click)="onCerrar()">×</button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="reserva-detalle">
+        <div class="detalle-item">
+          <span class="detalle-label">Localidad:</span>
+          <span class="detalle-valor">{{data.localidad.nombre}}</span>
+        </div>
+        <div class="detalle-item">
+          <span class="detalle-label">Cantidad:</span>
+          <span class="detalle-valor">{{data.cantidad}} boleta(s)</span>
+        </div>
+        <div class="detalle-item">
+          <span class="detalle-label">Total:</span>
+          <span class="detalle-valor precio-total">${{data.total | number}}</span>
+        </div>
+      </div>
+
+      <div class="cliente-form">
+        <label class="form-label">Identificación del Cliente:</label>
+        <input 
+          type="text" 
+          class="form-input"
+          [(ngModel)]="clienteId"
+          placeholder="Ingrese cédula o identificación"
+          maxlength="20"
+          #clienteInput>
+        <div class="form-help">
+          Ingrese el número de cédula o documento de identificación del cliente
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancelar" (click)="onCerrar()">
+        Cancelar
+      </button>
+      <button 
+        class="btn-confirmar" 
+        (click)="onConfirmar()"
+        [disabled]="!clienteId || clienteId.trim().length === 0 || cargando">
+        <span *ngIf="!cargando">Confirmar Reserva</span>
+        <span *ngIf="cargando">Procesando...</span>
+      </button>
+    </div>
+  </div>
+</div>

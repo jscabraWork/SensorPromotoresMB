@@ -12,7 +12,7 @@ import { Dia } from '../../../../../models/dia.model';
 export class SeleccionLocalidadComponent {
   
   @Input() dias: Dia[] = [];
-  @Output() reservar = new EventEmitter<{localidad: any, cantidad: number}>();
+  @Output() reservar = new EventEmitter<{localidad: any, cantidad: number, total: number}>();
   
   cantidades: { [key: string]: number } = {}; // Cantidad por cada localidad
 
@@ -67,6 +67,7 @@ export class SeleccionLocalidadComponent {
             const key = localidad.nombre;
             if (!localidadesMap.has(key)) {
               localidadesMap.set(key, {
+                id: localidad.id,
                 nombre: localidad.nombre,
                 descripcion: localidad.descripcion,
                 dias: [],
@@ -78,6 +79,7 @@ export class SeleccionLocalidadComponent {
             const precioCompleto = localidad.tarifa.precio + localidad.tarifa.servicio + localidad.tarifa.iva;
             
             localidadInfo.dias.push({
+              id: localidad.id,
               dia: dia,
               precio: precioCompleto,
               tarifa: localidad.tarifa
@@ -101,7 +103,8 @@ export class SeleccionLocalidadComponent {
     const localidadSeleccionada = this.getLocalidadSeleccionada();
     this.reservar.emit({
       localidad: localidadSeleccionada,
-      cantidad: this.getCantidadTotal()
+      cantidad: this.getCantidadTotal(),
+      total: this.calcularTotalGeneral()
     });
   }
 }

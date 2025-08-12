@@ -1,0 +1,220 @@
+@use '../../../../../../styles/variables' as v;
+@use '../../../../../../styles/mixins' as m;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-container {
+  background: v.$color-blanco;
+  border-radius: v.$border-radius;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow: hidden;
+  @include m.elevation(3);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: v.$spacer-4;
+  border-bottom: 1px solid v.$color-gris;
+  background: lighten(v.$color-gris, 8%);
+}
+
+.modal-title {
+  font-family: v.$font-secondary;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: v.$color-base;
+  margin: 0;
+}
+
+.btn-cerrar {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: v.$color-contraste;
+  cursor: pointer;
+  padding: v.$spacer-1;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  @include m.flex-center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: v.$color-gris;
+    color: v.$color-base;
+  }
+}
+
+.modal-body {
+  padding: v.$spacer-4;
+}
+
+.reserva-detalle {
+  background: lighten(v.$color-gris, 10%);
+  border-radius: v.$border-radius;
+  padding: v.$spacer-3;
+  margin-bottom: v.$spacer-4;
+}
+
+.detalle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: v.$spacer-1 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid v.$color-gris;
+  }
+}
+
+.detalle-label {
+  font-size: 0.9rem;
+  color: v.$color-contraste;
+  font-weight: 500;
+}
+
+.detalle-valor {
+  font-size: 0.95rem;
+  color: v.$color-base;
+  font-weight: 600;
+
+  &.precio-total {
+    font-size: 1.1rem;
+    color: v.$color-secundario;
+  }
+}
+
+.cliente-form {
+  display: flex;
+  flex-direction: column;
+  gap: v.$spacer-2;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  color: v.$color-base;
+  font-weight: 600;
+}
+
+.form-input {
+  padding: v.$spacer-3;
+  border: 2px solid v.$color-gris;
+  border-radius: v.$border-radius;
+  font-size: 1rem;
+  font-family: v.$font-primary;
+  color: v.$color-base;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: v.$color-base;
+    box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.1);
+  }
+
+  &::placeholder {
+    color: v.$color-contraste;
+  }
+}
+
+.form-help {
+  font-size: 0.8rem;
+  color: v.$color-contraste;
+  font-style: italic;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: v.$spacer-3;
+  padding: v.$spacer-4;
+  border-top: 1px solid v.$color-gris;
+  background: lighten(v.$color-gris, 10%);
+
+  @include m.for-mobile-down {
+    flex-direction: column;
+  }
+}
+
+.btn-cancelar {
+  padding: v.$spacer-2 v.$spacer-4;
+  border: 2px solid v.$color-contraste;
+  background: v.$color-blanco;
+  color: v.$color-contraste;
+  border-radius: v.$border-radius;
+  font-family: v.$font-secondary;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: v.$color-base;
+    color: v.$color-base;
+  }
+
+  @include m.for-mobile-down {
+    order: 2;
+  }
+}
+
+.btn-confirmar {
+  padding: v.$spacer-2 v.$spacer-4;
+  border: none;
+  background: v.$color-base;
+  color: v.$color-blanco;
+  border-radius: v.$border-radius;
+  font-family: v.$font-secondary;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 150px;
+
+  &:hover:not(:disabled) {
+    background: darken(v.$color-base, 10%);
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    background: v.$color-contraste;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  @include m.for-mobile-down {
+    order: 1;
+  }
+}
