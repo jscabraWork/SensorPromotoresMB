@@ -1,0 +1,12 @@
+<div class="evento-perfil-container">
+  <!-- Navigation Component -->
+  <app-navegacion 
+    [menuItems]="menuItems"
+    (onMenuItemClick)="onMenuItemClick()">
+  </app-navegacion>
+
+  <!-- Content Area -->
+  <div class="content-area">
+    <router-outlet></router-outlet>
+  </div>
+</div>

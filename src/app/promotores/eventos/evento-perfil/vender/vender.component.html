@@ -1,0 +1,41 @@
+<div class="vender-container" *ngIf="!cargando">
+  <!-- Header del Evento -->
+  <div class="evento-header" *ngIf="evento">
+    <div class="evento-info">
+      <h1 class="evento-titulo">{{evento.nombre}}</h1>
+      <div class="evento-pulep">{{evento.pulep}}</div>
+      <div class="evento-datos">
+        <div class="dato-item">
+          <img src="assets/vector/icons/artistas.svg" class="dato-icon" alt="Artistas">
+          <span>{{evento.artistas}}</span>
+        </div>
+        <div class="dato-item">
+          <img src="assets/vector/icons/city.svg" class="dato-icon" alt="Ciudad">
+          <span>{{evento.venue?.ciudad?.nombre}}</span>
+        </div>
+        <div class="dato-item">
+          <img src="assets/vector/icons/location.svg" class="dato-icon" alt="Lugar">
+          <span>{{evento.venue?.nombre}}</span>
+        </div>
+        <div class="dato-item">
+          <img src="assets/vector/icons/date.svg" class="dato-icon" alt="Fecha">
+          <span>{{evento.fechaApertura | date:'dd/MM/yyyy HH:mm'}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="evento-imagen" *ngIf="evento.imagenes && evento.imagenes.length > 0">
+      <img [src]="evento.imagenes[0].url" [alt]="evento.nombre" />
+    </div>
+  </div>
+
+  <!-- Componente de Selección de Localidad -->
+  <app-seleccion-localidad 
+    [dias]="dias"
+    (reservar)="onReservar($event)">
+  </app-seleccion-localidad>
+</div>
+
+<!-- Loading Spinner -->
+<div class="spinner-overlay" *ngIf="cargando">
+  <div class="spinner"></div>
+</div>
