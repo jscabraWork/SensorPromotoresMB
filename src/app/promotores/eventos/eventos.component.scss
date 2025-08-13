@@ -16,12 +16,12 @@
 }
 
 .evento-item {
-  background: v.$color-blanco;
+  background: v.$color-negro;
   border-radius: v.$border-radius * 2;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -41,7 +41,7 @@
   overflow: hidden;
   border-radius: v.$border-radius;
   background: v.$color-gris;
-  
+
   .imagen-rectangular {
     width: 100%;
     height: 100%;
@@ -58,7 +58,7 @@
   font-family: v.$font-secondary;
   font-size: 1.1rem;
   font-weight: 600;
-  color: v.$color-base;
+  color: v.$color-primario;
   margin: 0 0 v.$spacer-2 0;
   line-height: 1.2;
 }
@@ -67,22 +67,22 @@
   display: flex;
   flex-direction: column;
   gap: v.$spacer-1;
-  
+
   .detalle-item {
     display: flex;
     align-items: center;
     font-size: 13px;
     font-family: v.$font-primary;
-    
+
     .etiqueta {
       font-weight: 600;
-      color: v.$color-secundario;
+      color: v.$color-primario-dark;
       margin-right: v.$spacer-1;
       white-space: nowrap;
     }
-    
+
     .valor {
-      color: v.$color-base;
+      color: v.$color-gris-muy-light;
       font-weight: 500;
     }
   }
@@ -91,26 +91,28 @@
 .evento-acciones {
   display: flex;
   justify-content: end;
-  
+
   .button-primary {
     font-size: 13px;
     padding: v.$spacer-2 v.$spacer-3;
     border-radius: v.$border-radius;
+    background-color: v.$color-primario;
+    color: v.$color-negro;
   }
 }
 
 .evento-url {
-  background: v.$color-base;
+  background: v.$color-primario-light;
   padding: v.$spacer-2 v.$spacer-3;
-  
+
   a {
-    color: v.$color-blanco;
+    color: v.$color-negro;
     text-decoration: none;
     font-family: v.$font-primary;
     font-size: 12px;
     font-weight: 400;
     opacity: 0.9;
-    
+
     &:hover {
       opacity: 1;
       text-decoration: underline;
@@ -123,22 +125,22 @@
     margin: v.$spacer-2;
     gap: v.$spacer-3;
   }
-  
+
   .evento-content {
     flex-direction: column;
     align-items: flex-start;
     gap: v.$spacer-2;
-    
+
     .evento-imagen {
       width: 100%;
       height: 120px;
     }
   }
-  
+
   .evento-url {
     padding: v.$spacer-2;
     text-align: center;
-    
+
     a {
       font-size: 11px;
       word-break: break-all;

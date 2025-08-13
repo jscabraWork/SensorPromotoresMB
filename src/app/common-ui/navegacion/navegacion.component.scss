@@ -14,7 +14,7 @@
     width: fit-content;
     border-radius: 9px !important;
     padding: 0.6rem 2.5rem;
-  } 
+  }
 }
 
 .menu-pequeño {
@@ -25,19 +25,19 @@
     gap: 1.5rem;
     margin-top: 10px;
   }
-  
+
   .menu-pequeño li {
     cursor: pointer;
     font-size: 14px;
-    color: v.$color-base;
+    color: v.$color-negro;
     font-weight: 400;
     transition: color 0.3s;
   }
-  
+
   .menu-pequeño li:hover {
     color: v.$color-gris;
   }
-  
+
   .menu-mediano-lista-activo {
     border-bottom: 2px solid v.$color-base;
     padding-bottom: 2px !important;
@@ -45,7 +45,7 @@
   }
 
 .linea-menu {
-    background-color: v.$color-base;
+    background-color: v.$color-negro;
     height: 1px;
     border: 1px;
     width: 100%;

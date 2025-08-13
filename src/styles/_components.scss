@@ -127,11 +127,11 @@
 // Nav Table
 .paginacion-container {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   gap: 16px;
-  padding: 16px 0; 
-  
+  padding: 16px 0;
+
   .icon-chevron-left {
     @include m.icon-chevron-left(v.$color-base);
         width: 32px;
@@ -174,7 +174,7 @@
 
 .paginacion-texto {
   font-size: 0.9rem;
-  color: v.$color-base; 
+  color: v.$color-base;
 }
 
 // Botón base
@@ -420,7 +420,7 @@
   width: 100%;
 }
 
-.linea-detalle-expandido-subtable { 
+.linea-detalle-expandido-subtable {
   background-color: v.$color-base;
   height: 1px;
   border: 0;
@@ -482,12 +482,12 @@
     width: fit-content;
     border-radius: 9px !important;
     padding: 0.6rem 2.5rem;
-  } 
+  }
 }
 
 .tittle {
   line-height: normal;
-  color: v.$color-base;
+  color: v.$color-negro;
   font-weight: 800;
   font-style: bold;
 
@@ -497,11 +497,11 @@
   }
 
   .linea {
-    background-color: v.$color-base;
+    background-color: v.$color-negro;
     height: 3px;
-    border: none; 
+    border: none;
     width: 450px;
-    margin: 10px 0 10px 0; 
+    margin: 10px 0 10px 0;
     text-align: left;
     display: block;
   }
@@ -521,7 +521,7 @@
     justify-content: space-between
 }
 
-  
+
   .menu-pequeño {
     display: flex;
     list-style: none;
@@ -530,7 +530,7 @@
     gap: 50px;
     margin-top: 15px;
   }
-  
+
   .menu-pequeño li {
     cursor: pointer;
     font-size: 14px;
@@ -538,17 +538,17 @@
     font-weight: 400;
     transition: color 0.3s;
   }
-  
+
   .menu-pequeño li:hover {
     color: v.$color-gris;
   }
-  
+
   .menu-mediano-lista-activo {
     border-bottom: 2px solid v.$color-base;
     padding-bottom: 2px !important;
     opacity: 1;
   }
-  
+
   /* Media Queries para responsividad */
   @media(max-width: 945px) {
     .menu-pequeño {
@@ -557,13 +557,13 @@
     }
   }
 
-.btn-ver {     
+.btn-ver {
     button {
         @extend .button-primary;
         width: fit-content;
         border-radius: 9px !important;
         padding: 0.1rem 1.5rem;
-      } 
+      }
 }
 
 
@@ -595,7 +595,7 @@
     flex-direction: column;
     margin-top: 1rem;
     margin-left: 0;
-    
+
 
     & .label {
         font-family: v.$font-primary;
@@ -609,7 +609,7 @@
   .input-select {
     @extend .input-select-field;
   }
-    
+
 
     .input-name {
         @extend %input-field

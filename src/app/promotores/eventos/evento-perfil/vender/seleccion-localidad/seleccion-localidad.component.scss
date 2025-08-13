@@ -41,7 +41,7 @@
   justify-content: space-between;
   align-items: center;
   padding: v.$spacer-3 v.$spacer-4;
-  
+
   @include m.for-mobile-down {
     flex-direction: column;
     align-items: stretch;
@@ -75,9 +75,9 @@
 }
 
 .dias-detalle {
-  background: lighten(v.$color-gris, 8%);
+  background: lighten(v.$color-primario-light, 8%);
   padding: v.$spacer-2 v.$spacer-4;
-  border-top: 1px solid v.$color-gris;
+  border-top: 1px solid v.$color-primario-light;
 }
 
 .dia-item {
@@ -85,20 +85,20 @@
   justify-content: space-between;
   align-items: center;
   padding: v.$spacer-1 0;
-  
+
   &:not(:last-child) {
     border-bottom: 1px solid lighten(v.$color-gris, 3%);
   }
-  
+
   .dia-fecha {
-    color: v.$color-secundario;
+    color: v.$color-negro;
     font-size: 0.75rem;
     font-weight: 500;
     flex: 1;
   }
-  
+
   .dia-hora{
-    color: v.$color-secundario;
+    color: v.$color-negro;
     font-size: 0.75rem;
     font-weight: 500;
     white-space: nowrap;
@@ -110,7 +110,7 @@
 .precio-info {
   display: flex;
   align-items: center;
-  
+
   @include m.for-mobile-down {
     justify-content: flex-start;
   }

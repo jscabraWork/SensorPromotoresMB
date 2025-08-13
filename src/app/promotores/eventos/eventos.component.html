@@ -18,35 +18,35 @@
     <div class="evento-item" *ngFor="let evento of eventos">
       <div class="evento-content">
         <div class="evento-imagen">
-          <img 
-            [src]="getImagenPrincipal(evento) || 'assets/img/default-event.jpg'" 
+          <img
+            [src]="getImagenPrincipal(evento) || 'assets/img/default-event.jpg'"
             [alt]="evento.nombre"
             class="imagen-rectangular"
           />
         </div>
-        
+
         <div class="evento-info">
           <h3 class="evento-nombre">{{ evento.nombre }}</h3>
-          
+
           <div class="evento-detalles">
             <div class="detalle-item">
               <span class="etiqueta">Fecha:</span>
               <span class="valor">{{ formatFecha(evento.fechaApertura) }}</span>
             </div>
-            
+
             <div class="detalle-item">
               <span class="etiqueta">Hora de apertura:</span>
               <span class="valor">{{ formatHora(evento.fechaApertura) || 'Por confirmar' }}</span>
             </div>
-            
+
             <div class="detalle-item">
               <span class="etiqueta">Ciudad:</span>
               <span class="valor">{{ evento.venue?.ciudad?.nombre || 'No especificada' }}</span>
             </div>
           </div>
-          
+
           <div class="evento-acciones">
-            <button 
+            <button
               class="button-primary"
               (click)="verEvento(evento)"
             >
@@ -55,7 +55,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="evento-url">
         <a [href]="getEventoUrl(evento)" target="_blank" rel="noopener noreferrer">
           {{ getEventoUrl(evento) }}
