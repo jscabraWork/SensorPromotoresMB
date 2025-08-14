@@ -21,9 +21,9 @@
 }
 
 .localidad-item {
-  border: 1px solid v.$color-negro;
+  border: 1px solid v.$color-gris-muy-light;
   border-radius: v.$border-radius;
-  background: v.$color-blanco;
+  background: v.$color-negro;
   transition: all 0.2s ease;
   overflow: hidden;
 
@@ -63,21 +63,21 @@
   font-family: v.$font-secondary;
   font-size: 1.1rem;
   font-weight: 600;
-  color: v.$color-negro;
+  color: v.$color-primario;
   margin: 0;
 }
 
 .localidad-descripcion {
-  color: v.$color-negro-soft;
+  color: v.$color-blanco;
   font-size: 0.85rem;
   margin: 0;
   text-transform: capitalize;
 }
 
 .dias-detalle {
-  background: lighten(v.$color-negro, 8%);
+  background: lighten(v.$color-primario-light, 8%);
   padding: v.$spacer-2 v.$spacer-4;
-  border-top: 1px solid v.$color-negro;
+  border-top: 1px solid v.$color-primario-light;
 }
 
 .dia-item {
@@ -91,14 +91,14 @@
   }
 
   .dia-fecha {
-    color: v.$color-gris-muy-light;
+    color: v.$color-negro;
     font-size: 0.75rem;
     font-weight: 500;
     flex: 1;
   }
 
   .dia-hora{
-    color: v.$color-gris-muy-light;
+    color: v.$color-negro;
     font-size: 0.75rem;
     font-weight: 500;
     white-space: nowrap;
@@ -119,7 +119,7 @@
 .precio-total {
   font-size: 1.1rem;
   font-weight: 700;
-  color: v.$color-negro-soft;
+  color: v.$color-blanco;
   white-space: nowrap;
 }
 
@@ -141,7 +141,7 @@
   width: 28px;
   height: 28px;
   border: none;
-  background: v.$color-negro-soft;
+  background: v.$color-base;
   color: v.$color-blanco;
   border-radius: 100%;
   cursor: pointer;
@@ -155,7 +155,7 @@
   }
 
   &:disabled {
-    background: v.$color-gris-dark;
+    background: v.$color-contraste;
     cursor: not-allowed;
     opacity: 0.5;
   }
@@ -174,7 +174,7 @@
   position: sticky;
   bottom: 0;
   background: v.$color-blanco;
-  border-top: 2px solid v.$color-negro;
+  border-top: 2px solid v.$color-gris;
   padding: v.$spacer-3 0;
   margin-top: v.$spacer-4;
   @include m.elevation(2);
@@ -203,18 +203,18 @@
 
 .resumen-cantidad {
   font-size: 0.9rem;
-  color: v.$color-negro-soft;
+  color: v.$color-contraste;
 }
 
 .resumen-total {
   font-size: 1.4rem;
   font-weight: 700;
-  color: v.$color-negro-soft;
+  color: v.$color-base;
 }
 
 .btn-reservar {
-  background: v.$color-primario;
-  color: v.$color-negro;
+  background: v.$color-base;
+  color: v.$color-blanco;
   border: none;
   padding: v.$spacer-3 v.$spacer-5;
   border-radius: v.$border-radius;
@@ -226,14 +226,13 @@
   text-transform: uppercase;
   letter-spacing: 1px;
 
-  &:hover:not(:disabled) {
-    background: darken(v.$color-primario-light, 10%);
+  &:hover {
+    background: darken(v.$color-base, 10%);
     transform: translateY(-2px);
     @include m.elevation(2);
   }
 
-  &:active:not(:disabled) {
+  &:active {
     transform: translateY(0);
   }
-
 }

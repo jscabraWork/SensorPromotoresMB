@@ -32,11 +32,11 @@
 }
 
 @keyframes slideIn {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(-50px) scale(0.9);
   }
-  to { 
+  to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
@@ -48,14 +48,14 @@
   align-items: center;
   padding: v.$spacer-4;
   border-bottom: 1px solid v.$color-gris;
-  background: lighten(v.$color-gris, 8%);
+  background: lighten(v.$color-negro, 8%);
 }
 
 .modal-title {
   font-family: v.$font-secondary;
   font-size: 1.3rem;
   font-weight: 600;
-  color: v.$color-base;
+  color: v.$color-primario;
   margin: 0;
 }
 
@@ -63,7 +63,7 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: v.$color-contraste;
+  color: v.$color-primario-dark;
   cursor: pointer;
   padding: v.$spacer-1;
   border-radius: 50%;
@@ -73,8 +73,8 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background: v.$color-gris;
-    color: v.$color-base;
+    background: v.$color-primario-dark;
+    color: v.$color-negro;
   }
 }
 
@@ -83,7 +83,7 @@
 }
 
 .reserva-detalle {
-  background: lighten(v.$color-gris, 10%);
+  background: lighten(v.$color-negro, 10%);
   border-radius: v.$border-radius;
   padding: v.$spacer-3;
   margin-bottom: v.$spacer-4;
@@ -96,24 +96,24 @@
   padding: v.$spacer-1 0;
 
   &:not(:last-child) {
-    border-bottom: 1px solid v.$color-gris;
+    border-bottom: 1px solid v.$color-primario-light;
   }
 }
 
 .detalle-label {
   font-size: 0.9rem;
-  color: v.$color-contraste;
+  color: v.$color-primario-light;
   font-weight: 500;
 }
 
 .detalle-valor {
   font-size: 0.95rem;
-  color: v.$color-base;
+  color: v.$color-gris-muy-light;
   font-weight: 600;
 
   &.precio-total {
     font-size: 1.1rem;
-    color: v.$color-secundario;
+    color: v.$color-blanco;
   }
 }
 
@@ -125,22 +125,22 @@
 
 .form-label {
   font-size: 0.95rem;
-  color: v.$color-base;
+  color: v.$color-negro-soft;
   font-weight: 600;
 }
 
 .form-input {
   padding: v.$spacer-3;
-  border: 2px solid v.$color-gris;
+  border: 2px solid v.$color-negro;
   border-radius: v.$border-radius;
   font-size: 1rem;
   font-family: v.$font-primary;
-  color: v.$color-base;
+  color: v.$color-negro;
   transition: all 0.2s ease;
 
   &:focus {
     outline: none;
-    border-color: v.$color-base;
+    border-color: v.$color-negro;
     box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.1);
   }
 
@@ -151,7 +151,7 @@
 
 .form-help {
   font-size: 0.8rem;
-  color: v.$color-contraste;
+  color: v.$color-negro-soft;
   font-style: italic;
 }
 
@@ -160,8 +160,8 @@
   justify-content: flex-end;
   gap: v.$spacer-3;
   padding: v.$spacer-4;
-  border-top: 1px solid v.$color-gris;
-  background: lighten(v.$color-gris, 10%);
+  border-top: 1px solid v.$color-negro;
+  background: lighten(v.$color-negro, 10%);
 
   @include m.for-mobile-down {
     flex-direction: column;
@@ -170,9 +170,8 @@
 
 .btn-cancelar {
   padding: v.$spacer-2 v.$spacer-4;
-  border: 2px solid v.$color-contraste;
   background: v.$color-blanco;
-  color: v.$color-contraste;
+  color: v.$color-negro;
   border-radius: v.$border-radius;
   font-family: v.$font-secondary;
   font-size: 0.95rem;
@@ -181,8 +180,8 @@
   transition: all 0.2s ease;
 
   &:hover {
-    border-color: v.$color-base;
-    color: v.$color-base;
+    background: v.$color-gris;
+    color: v.$color-negro;
   }
 
   @include m.for-mobile-down {
@@ -193,8 +192,8 @@
 .btn-confirmar {
   padding: v.$spacer-2 v.$spacer-4;
   border: none;
-  background: v.$color-base;
-  color: v.$color-blanco;
+  background: v.$color-primario;
+  color: v.$color-negro;
   border-radius: v.$border-radius;
   font-family: v.$font-secondary;
   font-size: 0.95rem;
@@ -204,7 +203,7 @@
   min-width: 150px;
 
   &:hover:not(:disabled) {
-    background: darken(v.$color-base, 10%);
+    background: darken(v.$color-primario-light, 10%);
     transform: translateY(-1px);
   }
 
