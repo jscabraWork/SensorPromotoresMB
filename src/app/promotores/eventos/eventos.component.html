@@ -30,16 +30,19 @@
 
           <div class="evento-detalles">
             <div class="detalle-item">
+              <img src="assets/vector/icons/date.svg" class="dato-icon" alt="Fecha">
               <span class="etiqueta">Fecha:</span>
               <span class="valor">{{ formatFecha(evento.fechaApertura) }}</span>
             </div>
 
             <div class="detalle-item">
+              <img src="assets/vector/icons/tiempo.png" class="dato-icon" alt="Hora">
               <span class="etiqueta">Hora de apertura:</span>
               <span class="valor">{{ formatHora(evento.fechaApertura) || 'Por confirmar' }}</span>
             </div>
 
             <div class="detalle-item">
+              <img src="assets/vector/icons/city.svg" class="dato-icon" alt="Ciudad">
               <span class="etiqueta">Ciudad:</span>
               <span class="valor">{{ evento.venue?.ciudad?.nombre || 'No especificada' }}</span>
             </div>

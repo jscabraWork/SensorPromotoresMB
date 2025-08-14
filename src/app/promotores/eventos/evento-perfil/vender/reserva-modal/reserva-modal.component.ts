@@ -13,7 +13,7 @@ import { Reserva } from '../../../../../models/reserva.model';
   styleUrl: './reserva-modal.component.scss'
 })
 export class ReservaModalComponent implements OnInit {
-  
+
   clienteId: string = '';
   cargando: boolean = false;
 
@@ -48,7 +48,7 @@ export class ReservaModalComponent implements OnInit {
     }
 
     this.cargando = true;
-    
+
     const reserva = new Reserva();
     reserva.clienteId = this.clienteId.trim();
     reserva.cantidad = this.data.cantidad;
@@ -69,6 +69,7 @@ export class ReservaModalComponent implements OnInit {
 
     this.reservasService.crearReserva(reserva, localidadId, this.data.promotorId).subscribe({
       next: (response) => {
+        console.log(response)
         this.dialogRef.close({
           success: true,
           message: `Reserva creada exitosamente para ${this.data.cantidad} boleta(s) de ${this.data.localidad.nombre}`,

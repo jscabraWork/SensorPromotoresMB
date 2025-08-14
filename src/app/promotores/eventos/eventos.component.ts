@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Evento } from '../../models/evento.model';
 import { PromotoresDataService } from '../../service/data/promotores-data.service';
+import { Promotor } from '../../models/promotor.model';
 
 @Component({
   selector: 'app-eventos',
@@ -14,10 +15,11 @@ import { PromotoresDataService } from '../../service/data/promotores-data.servic
 })
 export class EventosComponent implements OnInit, OnDestroy {
   eventos: Evento[] = [];
+  usuario:Promotor = new Promotor();
   loading: boolean = false;
   isHistorial: boolean = false;
   private readonly destroy$: Subject<void> = new Subject<void>();
-  
+
   constructor(
     private readonly promotoresDataService: PromotoresDataService,
     private readonly router: Router,
@@ -39,17 +41,19 @@ export class EventosComponent implements OnInit, OnDestroy {
     this.isHistorial = url.includes('/historial');
   }
 
+
+
   private loadEventos(): void {
     this.loading = true;
     const numeroDocumento: string | null = this.getNumeroDocumentoFromRoute();
-    
+
     if (!numeroDocumento) {
       console.error('No se encontró el número de documento del promotor en la ruta');
       this.loading = false;
       return;
     }
 
-    const eventosObservable = this.isHistorial 
+    const eventosObservable = this.isHistorial
       ? this.promotoresDataService.getEventosHistorial(numeroDocumento)
       : this.promotoresDataService.getEventosActivos(numeroDocumento);
 
@@ -57,8 +61,8 @@ export class EventosComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response: any) => {
-          console.log(response)
           this.eventos = response?.eventos || [];
+          this.usuario = response?.promotor
           this.loading = false;
         },
         error: (error: any) => {
@@ -108,7 +112,7 @@ export class EventosComponent implements OnInit, OnDestroy {
 
   getEventoUrl(evento: Evento): string {
     const eventoId = evento.id || evento.nombre?.toLowerCase().replace(/\s+/g, '-');
-    return `https://allticketscol.com/eventos/evento/${eventoId}/compra/Promotor/Doom/promotor`;
+    return `https://ticketsensor.com/eventos/evento/${evento.id}/promotor/${this.usuario.correo}`;
   }
 
   verEvento(evento: Evento): void {
