@@ -81,7 +81,7 @@ export class AuthService {
     })
 
     if (this._usuario.tipo == 'promotor') {
-      this.router.navigate(['promotor', this._usuario.usuario]);
+      this.router.navigate(['promotor', this._usuario.numeroDocumento]);
       this.dialog.closeAll();
       sessionStorage.setItem('promotor', this._usuario.usuario);
       sessionStorage.setItem('cc', this._usuario.numeroDocumento);
