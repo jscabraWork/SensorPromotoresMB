@@ -53,31 +53,4 @@ export class ReservasComponent extends BaseComponent {
     }
 
 
-    checkEstadoVenta(estado: number){
-      switch (estado) {
-        case 0:
-          return 'Disponible';
-        case 1:
-          return 'Vendida';
-        case 2:
-          return 'Reservada';
-        case 3:
-          return 'En proceso';
-        case 4:
-          return 'No Disponible';
-        default:
-          return estado;
-      }
-    }
-
-    checkTipo(tipo: number){
-      switch (tipo) {
-        case 0:
-          return 'Ticket Completo';
-        case 1:
-          return 'Ticket Master de Palcos Individuales';
-        default:
-          return tipo;
-      }
-    }
 }

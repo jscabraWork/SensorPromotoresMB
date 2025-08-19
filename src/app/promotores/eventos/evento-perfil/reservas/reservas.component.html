@@ -12,6 +12,7 @@
       <th>Fecha Creacion Reserva</th>
       <th>Cantidad De Tickets Reservados</th>
       <th>Cliente Id</th>
+      <th>Enlace Reserva</th>
     </tr>
   </thead>
   <tbody>
@@ -46,6 +47,11 @@
                       </td>
                       <td class="d-none-687">
                         {{ reserva?.clienteId }}
+                      </td>
+                       <td class="d-none-687">
+                        <a [href]="'https://localhost:4200.com/reserva/' + reserva?.id" target="_blank">
+                          {{ 'https://localhost:4200.com/reserva/' + reserva?.id }}
+                        </a>
                       </td>
                     </tr>
           </ng-container>
