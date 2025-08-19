@@ -1,3 +1,50 @@
-<table class="tabla"  id="temporada-table">
+<table class="tabla-default"  id="temporada-table">
+  <thead>
+    <tr class="header-tr">
+      <th>Id</th>
+      <th>Fecha Creacion Reserva</th>
+      <th>Cantidad</th>
+      <th>Cliente Id</th>
+    </tr>
+  </thead>
+  <tbody>
+             <!-- Spinner de carga -->
+          <tr *ngIf="cargando" class="centrarTexto">
+            <td colspan="100%">
+              <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </td>
+          </tr>
 
+          <tr class="centrarTexto">
+            <td colspan="100%" *ngIf="reservas?.length == 0 && cargando == false" class="mensaje-vacio">
+                No tienes ventas registradas.
+            </td>
+          </tr>
+
+          <ng-container *ngFor="let reserva of reservas">
+              <tr class="body-td">
+                      <td class="d-none-384">
+                        {{ reserva?.id }}
+                      </td>
+                      <td class="d-none-384">
+                        {{ reserva?.creationDate | date: 'dd/MM/yyyy' }}
+                      </td>
+                      <td class="d-none-687">
+                        {{ reserva?.cantidad}}
+                      </td>
+                      <td class="d-none-687">
+                        {{ reserva?.clienteId }}
+                      </td>
+                    </tr>
+          </ng-container>
+
+
+
+  </tbody>
 </table>
+

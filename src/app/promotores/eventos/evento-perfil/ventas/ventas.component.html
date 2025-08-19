@@ -1,3 +1,57 @@
-<table class="tabla"  id="temporada-table">
+<table class="tabla-default"  id="temporada-table">
+  <thead>
+    <tr class="header-tr">
+      <th>Id</th>
+      <th>Estado</th>
+      <th>Tipo</th>
+      <th>Número</th>
+      <th>Tarifa</th>
+      <th>Localidad</th>
+    </tr>
+  </thead>
+  <tbody>
+             <!-- Spinner de carga -->
+          <tr *ngIf="cargando" class="centrarTexto">
+            <td colspan="100%">
+              <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </td>
+          </tr>
 
+          <tr class="centrarTexto">
+            <td colspan="100%" *ngIf="ventas?.length == 0 && cargando == false" class="mensaje-vacio">
+                No tienes ventas registradas.
+            </td>
+          </tr>
+
+          <ng-container *ngFor="let venta of ventas">
+              <tr class="body-td">
+                      <td class="d-none-384">
+                        {{ venta?.id }}
+                      </td>
+                      <td class="d-none-687">
+                        {{ checkEstadoVenta(venta?.estado) }}
+                      </td>
+                      <td class="d-none-687">
+                        {{ checkTipo(venta?.tipo) }}
+                      </td>
+                      <td class="d-none-687">
+                        {{ venta?.numero ?? 'Sin numeración' }}
+                      </td>
+                      <td class="d-none-687">
+                        {{ venta?.tarifa?.precio + venta?.tarifa?.servicio + venta?.tarifa?.iva | currency: 'COP '}}
+                      </td>
+                      <td class="d-none-687">
+                        {{ venta?.localidad}}
+                      </td>
+                    </tr>
+          </ng-container>
+
+
+
+  </tbody>
 </table>

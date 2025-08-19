@@ -1,0 +1,13 @@
+@use '../../../../../styles/variables' as v;
+@use '../../../../../styles/components' as c;
+
+
+th{
+  font-weight: 600;
+  color: v.$color-primario !important;
+  background-color: v.$color-negro !important;
+}
+
+td{
+  color: v.$color-negro;
+}
