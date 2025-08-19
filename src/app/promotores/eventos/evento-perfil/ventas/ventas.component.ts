@@ -42,6 +42,7 @@ export class VentasComponent extends BaseComponent {
       this.promotoresService.getDetalleVentas(this.idPromotor, +this.pathVariable).subscribe({
         next: (response) => {
           this.ventas = response.ventas;
+          console.log(this.ventas);
           this.finalizarCarga();
         },
         error: (error) => {
@@ -49,6 +50,10 @@ export class VentasComponent extends BaseComponent {
         }
       });
     }
+  }
+
+  totalVentas(): number {
+    return this.ventas.reduce((total, venta) => total + venta?.tarifa?.precio + venta?.tarifa?.servicio + venta?.tarifa?.iva, 0);
   }
 
 

@@ -11,3 +11,24 @@ th{
 td{
   color: v.$color-negro;
 }
+
+.ventas-info{
+  display: flex;
+}
+
+.ventas-item{
+  width: 15%;
+  background-color: v.$color-negro;
+  border-radius: 10px;
+  justify-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+h4{
+  color: v.$color-primario !important;
+}
+
+.ventaTotal{
+  color: v.$color-gris-muy-light !important
+}

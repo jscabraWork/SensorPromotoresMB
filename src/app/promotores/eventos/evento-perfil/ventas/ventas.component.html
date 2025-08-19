@@ -1,3 +1,20 @@
+
+  <div class="title-container">
+    <div class="tittle">
+      <p>Ventas</p>
+      <hr class="linea">
+    </div>
+  </div>
+
+
+    <div class="ventas-info">
+      <div class="ventas-item">
+        <h4>Total vendido</h4>
+        <p class="ventaTotal">{{totalVentas() | currency: ' COP' }}</p>
+      </div>
+    </div>
+
+
 <table class="tabla-default"  id="temporada-table">
   <thead>
     <tr class="header-tr">
@@ -5,6 +22,7 @@
       <th>Estado</th>
       <th>Tipo</th>
       <th>Número</th>
+      <th>Etapa</th>
       <th>Tarifa</th>
       <th>Localidad</th>
     </tr>
@@ -41,6 +59,9 @@
                       </td>
                       <td class="d-none-687">
                         {{ venta?.numero ?? 'Sin numeración' }}
+                      </td>
+                      <td class="d-none-687">
+                        {{ venta?.tarifa?.nombre }}
                       </td>
                       <td class="d-none-687">
                         {{ venta?.tarifa?.precio + venta?.tarifa?.servicio + venta?.tarifa?.iva | currency: 'COP '}}

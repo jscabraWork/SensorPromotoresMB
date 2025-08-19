@@ -42,6 +42,7 @@ export class ReservasComponent extends BaseComponent {
         this.promotoresService.getReservas(this.idPromotor, +this.pathVariable).subscribe({
           next: (response) => {
             this.reservas = response.reservas;
+            console.log(this.reservas);
             this.finalizarCarga();
           },
           error: (error) => {
