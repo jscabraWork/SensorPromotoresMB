@@ -30,7 +30,6 @@ export class ReservasComponent extends BaseComponent {
 
         route.parent?.parent?.params.subscribe(params => {
           this.idPromotor = params['idPromotor'];
-          console.log('idPromotor:', this.idPromotor);
         });
 
       }
@@ -43,7 +42,6 @@ export class ReservasComponent extends BaseComponent {
         this.promotoresService.getReservas(this.idPromotor, +this.pathVariable).subscribe({
           next: (response) => {
             this.reservas = response.reservas;
-            console.log(response);
             this.finalizarCarga();
           },
           error: (error) => {

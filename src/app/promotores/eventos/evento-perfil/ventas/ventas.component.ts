@@ -30,7 +30,6 @@ export class VentasComponent extends BaseComponent {
 
       route.parent?.parent?.params.subscribe(params => {
         this.idPromotor = params['idPromotor'];
-        console.log('idPromotor:', this.idPromotor);
       });
 
     }
@@ -43,7 +42,6 @@ export class VentasComponent extends BaseComponent {
       this.promotoresService.getDetalleVentas(this.idPromotor, +this.pathVariable).subscribe({
         next: (response) => {
           this.ventas = response.ventas;
-          console.log('Ventas:', this.ventas);
           this.finalizarCarga();
         },
         error: (error) => {
