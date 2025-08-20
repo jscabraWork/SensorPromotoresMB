@@ -1,3 +1,63 @@
-<table class="tabla"  id="temporada-table">
+<div class="title-container">
+    <div class="tittle">
+      <p>Reservas</p>
+      <hr class="linea">
+    </div>
+  </div>
 
+<table class="tabla-default"  id="temporada-table">
+  <thead>
+    <tr class="header-tr">
+      <th>Id</th>
+      <th>Fecha Creacion Reserva</th>
+      <th>Cantidad De Tickets Reservados</th>
+      <th>Cliente Id</th>
+      <th>Enlace Reserva</th>
+    </tr>
+  </thead>
+  <tbody>
+             <!-- Spinner de carga -->
+          <tr *ngIf="cargando" class="centrarTexto">
+            <td colspan="100%">
+              <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </td>
+          </tr>
+
+          <tr class="centrarTexto">
+            <td colspan="100%" *ngIf="reservas?.length == 0 && cargando == false" class="mensaje-vacio">
+                No tienes ventas registradas.
+            </td>
+          </tr>
+
+          <ng-container *ngFor="let reserva of reservas">
+              <tr class="body-td">
+                      <td class="d-none-384">
+                        {{ reserva?.id }}
+                      </td>
+                      <td class="d-none-384">
+                        {{ reserva?.creationDate | date: 'dd/MM/yyyy' }}
+                      </td>
+                      <td class="d-none-687">
+                        {{ reserva?.cantidad}}
+                      </td>
+                      <td class="d-none-687">
+                        {{ reserva?.clienteId }}
+                      </td>
+                       <td class="d-none-687">
+                        <a [href]="'https://localhost:4200/reservas/' + reserva?.id" target="_blank">
+                          {{ 'https://localhost:4200/reservas/' + reserva?.id }}
+                        </a>
+                      </td>
+                    </tr>
+          </ng-container>
+
+
+
+  </tbody>
 </table>
+

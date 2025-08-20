@@ -13,7 +13,11 @@ export class PromotoresDataService extends CommonDataService<Promotor>{
   protected override baseEndpoint = API_URL_PROMOTORES + "/promotores";
 
   endpointEventos = API_URL_PROMOTORES + "/eventos";
-  
+
+  endpointPromotores = API_URL_PROMOTORES + "/promotores";
+
+  endpointReservas = API_URL_PROMOTORES + "/reservas";
+
   protected override atributoListado= 'evento';
 
   getPromotorByNumeroDocumento(numeroDocumento: string): Observable<any> {
@@ -39,8 +43,18 @@ export class PromotoresDataService extends CommonDataService<Promotor>{
     return this.http.get<any>(`${this.endpointEventos}/perfil/${eventoId}`);
   }
 
+  getDetalleVentas(idPromotor: string, idEvento: number): Observable<any> {
+    return this.http.get<any>(`${this.endpointPromotores}/ventas/${idPromotor}/eventos/${idEvento}`);
+  }
+
+  getReservas(idPromotor: string, idEvento: number) {
+  const params = new HttpParams()
+    .set('pPromotorId', idPromotor)
+    .set('pEventoId', idEvento);
+   return this.http.post<any>(`${this.endpointReservas}/activas`, {}, { params });
+}
 
 
-  
+
 
 }
