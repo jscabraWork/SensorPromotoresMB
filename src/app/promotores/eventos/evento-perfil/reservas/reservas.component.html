@@ -1,63 +1,55 @@
-<div class="title-container">
-    <div class="tittle">
-      <p>Reservas</p>
-      <hr class="linea">
+<div class="reservas-container">
+  <!-- Estadísticas -->
+  <div class="estadisticas-grid">
+    <div class="estadistica-card activa">
+      <div class="estadistica-contenido">
+        <div class="estadistica-numero">{{ estadisticas.reservasActivas }}</div>
+        <div class="estadistica-label">Reservas Activas</div>
+      </div>
     </div>
+
+    <div class="estadistica-card activa">
+      <div class="estadistica-contenido">
+        <div class="estadistica-numero">{{ estadisticas.reservasInactivas }}</div>
+        <div class="estadistica-label">Reservas Inactivas</div>
+      </div>
+    </div>
+
+    <div class="estadistica-card activa">
+      <div class="estadistica-contenido">
+        <div class="estadistica-numero">{{ estadisticas.reservasInactivas + estadisticas.reservasActivas}}</div>
+        <div class="estadistica-label">Total Reservas</div>
+      </div>
+    </div>
+    
+
   </div>
 
-<table class="tabla-default"  id="temporada-table">
-  <thead>
-    <tr class="header-tr">
-      <th>Id</th>
-      <th>Fecha Creacion Reserva</th>
-      <th>Cantidad De Tickets Reservados</th>
-      <th>Cliente Id</th>
-      <th>Enlace Reserva</th>
-    </tr>
-  </thead>
-  <tbody>
-             <!-- Spinner de carga -->
-          <tr *ngIf="cargando" class="centrarTexto">
-            <td colspan="100%">
-              <div class="lds-ellipsis">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-            </td>
-          </tr>
-
-          <tr class="centrarTexto">
-            <td colspan="100%" *ngIf="reservas?.length == 0 && cargando == false" class="mensaje-vacio">
-                No tienes ventas registradas.
-            </td>
-          </tr>
-
-          <ng-container *ngFor="let reserva of reservas">
-              <tr class="body-td">
-                      <td class="d-none-384">
-                        {{ reserva?.id }}
-                      </td>
-                      <td class="d-none-384">
-                        {{ reserva?.creationDate | date: 'dd/MM/yyyy' }}
-                      </td>
-                      <td class="d-none-687">
-                        {{ reserva?.cantidad}}
-                      </td>
-                      <td class="d-none-687">
-                        {{ reserva?.clienteId }}
-                      </td>
-                       <td class="d-none-687">
-                        <a [href]="'https://ticketsensor.com/reservas/' + reserva?.id" target="_blank">
-                          {{ 'https://ticketsensor.com/reservas/' + reserva?.id }}
-                        </a>
-                      </td>
-                    </tr>
-          </ng-container>
-
-
-
-  </tbody>
-</table>
-
+  <!-- Tabla de Reservas -->
+  <app-tabla-organizadores
+    [datos]="reservas"
+    [columnas]="columnasTabla"
+    [cargando]="cargando"
+    [titulo]="'Tus Reservas'"
+    [sinDatosMensaje]="'No tienes reservas registradas'"
+    [accion]="{
+      texto: 'Ver Reserva',
+      clase: 'btn-ver-reserva'
+    }"
+    (accionClick)="abrirReserva($event)">
+    
+    <!-- Template personalizado para la columna de link -->
+    <div slot="linkReserva">
+      <div class="link-actions" *ngFor="let reserva of reservas; trackBy: trackReserva">
+        <button 
+          type="button"
+          class="btn-copy-link"
+          (click)="copiarLink(reserva.linkReserva)"
+          title="Copiar enlace">
+          Copiar enlace
+        </button>
+      </div>
+    </div>
+    
+  </app-tabla-organizadores>
+</div>

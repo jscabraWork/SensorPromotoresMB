@@ -1,34 +1,68 @@
 @use '../../../../../styles/variables' as v;
-@use '../../../../../styles/components' as c;
 
-
-th{
-  font-weight: 600;
-  color: v.$color-primario !important;
-  background-color: v.$color-negro !important;
+.ventas-container {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-td{
+.estadisticas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.estadistica-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 3px solid v.$color-primario;
+  text-align: center;
+
+  @media (max-width: 480px) {
+    padding: 0.75rem;
+  }
+}
+
+.estadistica-numero {
+  font-size: 1.5rem;
+  font-weight: 700;
   color: v.$color-negro;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 }
 
-.ventas-info{
-  display: flex;
+.estadistica-label {
+  font-size: 0.8rem;
+  color: v.$color-gris;
+  font-weight: 500;
+  margin-top: 0.25rem;
 }
 
-.ventas-item{
-  width: 15%;
-  background-color: v.$color-negro;
-  border-radius: 10px;
-  justify-items: center;
-  padding: 10px;
-  margin-bottom: 15px;
-}
-
-h4{
-  color: v.$color-primario !important;
-}
-
-.ventaTotal{
-  color: v.$color-gris-muy-light !important
+:host ::ng-deep {
+  @media (max-width: 768px) {
+    .table-responsive {
+      overflow-x: auto;
+    }
+    
+    .table th,
+    .table td {
+      white-space: nowrap;
+      min-width: 80px;
+    }
+  }
 }

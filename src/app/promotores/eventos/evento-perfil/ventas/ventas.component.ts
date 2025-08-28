@@ -6,11 +6,12 @@ import { PromotoresDataService } from '../../../../service/data/promotores-data.
 import { HardcodedAutheticationService } from '../../../../service/security/hardcoded-authetication.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { TablaOrganizadoresComponent, ColumnaTabla } from '../../../../common-ui/tabla-organizadores/tabla-organizadores.component';
 
 @Component({
   selector: 'app-ventas',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TablaOrganizadoresComponent],
   templateUrl: './ventas.component.html',
   styleUrl: './ventas.component.scss'
 })
@@ -18,6 +19,22 @@ export class VentasComponent extends BaseComponent {
 
   ventas: any[] = [];
   idPromotor: string | null = null;
+  estadisticas = {
+    totalVentas: 0,
+    totalTicketsVendidos: 0,
+    totalTicketsReservados: 0,
+    totalVendido: 0,
+  };
+
+  columnasTabla: ColumnaTabla[] = [
+    { key: 'id', label: 'ID', tipo: 'texto', alineacion: 'center' },
+    { key: 'estado', label: 'Estado', tipo: 'texto', alineacion: 'center' },
+    { key: 'tipo', label: 'Tipo', tipo: 'texto', alineacion: 'center' },
+    { key: 'numero', label: 'Número', tipo: 'texto', alineacion: 'center' },
+    { key: 'tarifa.nombre', label: 'Etapa', tipo: 'texto', alineacion: 'center' },
+    { key: 'precioTotal', label: 'Tarifa', tipo: 'moneda', alineacion: 'right' },
+    { key: 'localidad', label: 'Localidad', tipo: 'texto', alineacion: 'center' }
+  ];
 
   constructor(
       private promotoresService: PromotoresDataService,
@@ -41,7 +58,8 @@ export class VentasComponent extends BaseComponent {
       this.iniciarCarga();
       this.promotoresService.getDetalleVentas(this.idPromotor, +this.pathVariable).subscribe({
         next: (response) => {
-          this.ventas = response.ventas;
+          this.ventas = this.procesarVentas(response.ventas);
+          this.calcularEstadisticas();
           console.log(this.ventas);
           this.finalizarCarga();
         },
@@ -52,10 +70,34 @@ export class VentasComponent extends BaseComponent {
     }
   }
 
-  totalVentas(): number {
-    return this.ventas.reduce((total, venta) => total + venta?.tarifa?.precio + venta?.tarifa?.servicio + venta?.tarifa?.iva, 0);
+  private procesarVentas(ventas: any[]): any[] {
+    return ventas.map(venta => ({
+      ...venta,
+      estado: this.checkEstadoVenta(venta.estado),
+      tipo: this.checkTipo(venta.tipo),
+      numero: venta.numero ?? 'Sin numeración',
+      precioTotal: (venta?.tarifa?.precio || 0) + (venta?.tarifa?.servicio || 0) + (venta?.tarifa?.iva || 0)
+    }));
   }
 
+  private calcularEstadisticas(): void {
+    this.estadisticas.totalVentas = this.ventas.length;
+    
+    // Solo contar tickets vendidos (estado 1)
+    const ticketsVendidos = this.ventas.filter(venta => venta.estado === 'Vendida');
+    this.estadisticas.totalTicketsVendidos = ticketsVendidos.length;
+    
+    // Solo contar tickets reservados (estado 2) 
+    this.estadisticas.totalTicketsReservados = this.ventas.filter(venta => venta.estado === 'Reservada').length;
+    
+    // Solo sumar ingresos de tickets vendidos
+    this.estadisticas.totalVendido = ticketsVendidos.reduce((total, venta) => total + venta.precioTotal, 0);
+    
+  }
+
+  totalVentas(): number {
+    return this.estadisticas.totalVendido;
+  }
 
   checkEstadoVenta(estado: number){
     switch (estado) {

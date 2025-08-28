@@ -75,7 +75,7 @@ export class VenderComponent extends BaseComponent {
       if (result) {
         if (result.success && result.data) {
           const reservaId = result.data.reserva.id;
-          const linkReserva = `https://ticketsensor.com/reserva/${reservaId}`;
+          const linkReserva = `https://ticketsensor.com/reservas/${reservaId}`;
           const mensajeCompleto = `${result.message}\n\nLink de la reserva:\n${linkReserva}`;
           this.mostrarMensaje(mensajeCompleto);
         } else {

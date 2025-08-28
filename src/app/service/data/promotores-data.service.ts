@@ -51,7 +51,7 @@ export class PromotoresDataService extends CommonDataService<Promotor>{
   const params = new HttpParams()
     .set('pPromotorId', idPromotor)
     .set('pEventoId', idEvento);
-   return this.http.post<any>(`${this.endpointReservas}/activas`, {}, { params });
+   return this.http.get<any>(`${this.endpointReservas}/listar/evento`, { params });
 }
 
 
