@@ -1,0 +1,57 @@
+<div class="container-fluid">
+ 
+  <!-- Loading spinner -->
+  <div *ngIf="loading" class="spinner-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Contenido del perfil -->
+  <div *ngIf="!loading" class="perfil-content">
+    
+    <!-- Sección de bienvenida -->
+    <div class="bienvenida-section">
+      <div class="bienvenida-card">
+        <h2 class="bienvenida-titulo">¡BIENVENIDO!</h2>
+        <h3 class="bienvenida-nombre">{{ usuario?.nombre || 'Promotor' }}</h3>
+        <p class="bienvenida-subtitulo">Gestiona tu perfil y revisa tu información</p>
+      </div>
+    </div>
+
+    <!-- Datos básicos del promotor -->
+    <div class="datos-basicos-section">
+      <h4 class="seccion-titulo">Información Personal</h4>
+      
+      <div class="informacion-grid">
+        <div class="info-item">
+          <label class="info-label">Nombre completo:</label>
+          <p class="info-valor">{{ usuario?.nombre || 'No disponible' }}</p>
+        </div>
+
+        <div class="info-item">
+          <label class="info-label">Número de documento:</label>
+          <p class="info-valor">{{ usuario?.numeroDocumento || 'No disponible' }}</p>
+        </div>
+
+        <div class="info-item">
+          <label class="info-label">Correo electrónico:</label>
+          <p class="info-valor">{{ usuario?.correo || 'No disponible' }}</p>
+        </div>
+
+        <div class="info-item">
+          <label class="info-label">Celular:</label>
+          <p class="info-valor">{{ usuario?.celular || 'No disponible' }}</p>
+        </div>
+
+        <div class="info-item">
+          <label class="info-label">Usuario:</label>
+          <p class="info-valor">{{ usuario?.usuario || 'No disponible' }}</p>
+        </div>
+
+  
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

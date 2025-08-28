@@ -5,6 +5,7 @@ import { EventoPerfilComponent } from './eventos/evento-perfil/evento-perfil.com
 import { VentasComponent } from './eventos/evento-perfil/ventas/ventas.component';
 import { VenderComponent } from './eventos/evento-perfil/vender/vender.component';
 import { ReservasComponent } from './eventos/evento-perfil/reservas/reservas.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 export const promotoresRoutes: Routes = [
   {
@@ -27,11 +28,17 @@ export const promotoresRoutes: Routes = [
       },
       {
         path: 'historial',
-        component: EventosComponent
+        component: EventosComponent,
+        children: [
+          { path: 'vender', component: VenderComponent },
+          { path: 'ventas', component: VentasComponent },
+          { path: 'reservas', component: ReservasComponent },
+          { path: '', redirectTo: 'vender', pathMatch: 'full' },
+        ]
       },
       {
         path: 'perfil',
-        component: EventosComponent
+        component: PerfilComponent
       },
       { path: '', redirectTo: 'eventos', pathMatch: 'full' },
     ]

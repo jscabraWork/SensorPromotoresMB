@@ -14,7 +14,7 @@ export class EventoPerfilComponent implements OnInit {
   idPromotor: string = '';
   
   menuItems = [
-    { path: 'vender', label: 'Vender' },
+    { path: 'vender', label: 'Reservar' },
     { path: 'ventas', label: 'Detalle de Ventas' },
     { path: 'reservas', label: 'Reservas' }
   ];

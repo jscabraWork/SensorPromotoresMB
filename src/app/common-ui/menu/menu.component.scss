@@ -118,7 +118,7 @@
     left: 0;
     width: v.$sidebar-width;
     height: calc(100vh - #{v.$mobile-header-height});
-    background: v.$color-gris;
+    background: v.$color-negro;
     transition: transform v.$transition-duration ease;
     z-index: 1000;
 

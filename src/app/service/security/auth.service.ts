@@ -19,13 +19,11 @@ export class AuthService {
   constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
 
   public get usuario(): Usuario {
-    if(this._usuario != null){
+    if(this._usuario != null && this._usuario.usuario && this._usuario.usuario !== ''){
       return this._usuario;
-    }  else if (
-      this._usuario == null &&
-      sessionStorage.getItem('usuario') != null
-    ) {
-      this._usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}') as Usuario;
+    } else if (sessionStorage.getItem('usuarioEntidad') != null) {
+      this._usuario = JSON.parse(sessionStorage.getItem('usuarioEntidad') || '{}') as Usuario;
+      console.log('Usuario cargado desde sessionStorage:', this._usuario);
       return this._usuario;
     }
     return new Usuario();

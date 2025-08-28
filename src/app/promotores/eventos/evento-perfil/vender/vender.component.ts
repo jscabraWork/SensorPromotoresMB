@@ -74,7 +74,7 @@ export class VenderComponent extends BaseComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (result.success && result.data) {
-          const reservaId = result.data.id;
+          const reservaId = result.data.reserva.id;
           const linkReserva = `https://ticketsensor.com/reserva/${reservaId}`;
           const mensajeCompleto = `${result.message}\n\nLink de la reserva:\n${linkReserva}`;
           this.mostrarMensaje(mensajeCompleto);
